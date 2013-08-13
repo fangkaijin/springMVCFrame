@@ -19,76 +19,58 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<script language="javascript"
+<script type="text/javascript"
 	src="${path}/style/js/jQuery/jquery-1.8.0.min.js"></script>
-<style>
-<!--
-table {
-	border-collapse: collapse;
-}
+<script type="text/javascript"
+	src="${path}/style/js/jQuery/w2UI/w2ui-1.2.min.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="${path }/style/Flat-UI-2.0/css/flat-ui.css" />
+<link type="text/css" rel="stylesheet"
+	href="${path }/style/css/W2UI/w2ui-1.2.min.css" />
 
-td {
-	border: 1px solid #f00;
-}
--->
-</style>
-<style mce_bogus="1">
-table {
-	border-collapse: collapse;
-}
 
-td {
-	border: 1px solid #f00;
-}
-</style>
 <script type="text/javascript">
-<!--   
-function add(){   
-    window.location.href="${path}/student.do?method=add";   
-}   
-  
-function del(id){   
-$.ajax( {   
-    type : "POST",   
-    url : "${path}/student.do?method=del&id=" + id,   
-    dataType: "json",   
-    success : function(data) {   
-        if(data.del == "true"){   
-            alert("您确定删除么！");   
-            $("#" + id).remove();   
-        }   
-        else{   
-            alert("删除失败！");   
-        }   
-    },   
-    error :function(){   
-        alert("网络连接出错！");   
-    }   
-});   
-}   
-// --></script>
+<!--
+	function add() {
+		window.location.href = "${path}/student.do?method=add";
+	}
+
+	function del(id) {
+		$.ajax({
+			type : "POST",
+			url : "${path}/student.do?method=del&id=" + id,
+			dataType : "json",
+			success : function(data) {
+				if (data.del == "true") {
+					alert("您确定删除么！");
+					$("#" + id).remove();
+				} else {
+					alert("删除失败！");
+				}
+			},
+			error : function() {
+				alert("网络连接出错！");
+			}
+		});
+	}
+// -->
+</script>
+
+<script type="text/javascript">
+$('#grid').w2grid({ 
+	name: 'grid', 
+	url: '/data/list.json',
+	columns: [				
+		{ field: 'fname', caption: 'First Name', size: '30%' },
+		{ field: 'lname', caption: 'Last Name', size: '30%' },
+		{ field: 'email', caption: 'Email', size: '40%' },
+		{ field: 'sdate', caption: 'Start Date', size: '120px' }
+	]
+});
+</script>
 </head>
 <body>
 
-	<input id="add" type="button" onclick="add()" value="添加" />
-	<table>
-		<tr>
-			<td>序号</td>
-			<td>姓名</td>
-			<td>密码</td>
-			<td>操作</td>
-		</tr>
-		<c:forEach items="${list}" var="student">
-			<tr id="<c:out value="${student.id}"/>">
-				<td><c:out value="${student.id}" /></td>
-				<td><c:out value="${student.name}" /></td>
-				<td><c:out value="${student.psw}" /></td>
-				<td><input type="button" value="编辑" /> <input type="button"
-					onclick="del('<c:out value="${student.id}"/>')" value="删除" />
-				</td>
-			</tr>
-		</c:forEach>
-
-	</table>
+	<div id="grid" style="width: 100%; height: 500px;"></div>
 </body>
 </html>

@@ -19,6 +19,7 @@
 			<meta http-equiv="expires" content="0">
 				<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 					<meta http-equiv="description" content="This is my page">
+					<link type="text/css" rel="stylesheet" href="${path }/style/Flat-UI-2.0/css/flat-ui.css" />
 <script type="text/javascript">   
 		function turnback(){   
 		    window.location.href="${path}/student.do";
@@ -27,10 +28,12 @@
 </head>
 <body>
 	<form action="${path}/student.do">
-		<input type="hidden" name="method" value="add" /> <input
-			type="submit" name="button" value="添加" />
+		<input type="hidden" name="method" value="add" /> 
+		<input
+			type="submit" class="btn btn-large btn-block btn-primary" name="button" value="添加" />
 	</form>
-	<input type="button" onclick="turnback()" value="列表" />
+	
+	<input type="button" style="margin-top: 20px;" class="btn btn-block btn-large" onclick="turnback()" value="列表" />
 	</td>
 	</tr>
 </body>
